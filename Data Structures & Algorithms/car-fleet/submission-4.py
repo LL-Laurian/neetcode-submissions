@@ -1,0 +1,28 @@
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        length = len(position)
+
+        if length<=1:
+            return length
+        comb = []
+
+        for i in range(len(position)):
+            comb.append((position[i], speed[i]))
+        
+        comb.sort(reverse= True)
+
+        count = 1
+        front_time = (target - comb[0][0])/comb[0][1]
+        i = 1
+
+        while i < length:
+            cur_car = comb[i]
+            cur_time = (target - cur_car[0])/cur_car[1]
+            if cur_time > front_time:
+                front_time = cur_time
+                count +=1
+            i+=1
+        return count
+
+            
+        
